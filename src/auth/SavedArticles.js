@@ -6,7 +6,7 @@ function SavedArticles({ EmailForArticle }) {
     useEffect(() => {
         if (EmailForArticle != "") {
             const fetchData = async () => {
-                await axios.post("http://localhost:5000/artices", { EmailForArticle }).then((res) => {
+                await axios.post("https://newsbackend-satyam.onrender.com/artices", { EmailForArticle }).then((res) => {
                     setArticles(res.data)
                     // console.log(res.data)
                 })

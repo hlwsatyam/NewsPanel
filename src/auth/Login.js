@@ -17,7 +17,7 @@ function Login({ xlog, setxlog, setEmailForArticle }) {
     }
     const login = (e) => {
         if (user.email && user.pass) {
-            axios.post("http://localhost:5000/login", user).then((res) => {
+            axios.post("https://newsbackend-satyam.onrender.com/login", user).then((res) => {
                 alert(res.data.message)
                 if (res.data.message == "login successfully!") {
                     setEmailForArticle(user.email)

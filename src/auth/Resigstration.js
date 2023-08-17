@@ -23,7 +23,7 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
 
         if (name && email && pass && pass === repass) {
 
-            axios.post("http://localhost:5000/register", user).then(async (res) => {
+            axios.post("https://newsbackend-satyam.onrender.com/register", user).then(async (res) => {
                 alert(await res.data.message)
                 if (res.data.message == "Successfully registered!") {
                     setxlog(!xlog)

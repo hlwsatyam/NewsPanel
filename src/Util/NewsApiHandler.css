@@ -1,0 +1,41 @@
+.item {
+
+    max-width: 33.3%;
+    width: fit-content;
+    margin: 5px auto;
+
+}
+
+@media screen and (min-width:0px) and (max-width:500px){
+
+    .item {
+
+        max-width: 100%;
+        width: fit-content;
+        margin: 5px auto;
+
+    }
+
+
+} 
+
+@media screen and   (min-width:500px) and (max-width:900px)  {
+
+    .item {
+
+        max-width: 50%;
+        width: fit-content;
+        margin: 5px auto;
+
+    }
+
+
+}
+
+.box {
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}

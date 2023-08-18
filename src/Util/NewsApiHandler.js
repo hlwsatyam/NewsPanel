@@ -29,7 +29,7 @@ function NewsApiHandler({ cat, EmailForArticle }) {
 
     return (
         <div>
-            <div className="container-md box ">
+            <div className="container-md p-4 box ">
                 {
                     (data) ? (data.map((item, id) => <div class="card mt-5 item" >
                         <img src={item.image} class="card-img-top" alt="Img src Not Found" />

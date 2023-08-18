@@ -5,8 +5,10 @@ function NewsApiHandler({ cat, EmailForArticle }) {
     const [data, setdata] = useState([])
     const NewsHandler = async () => {
         await axios.get(
-            cat ? `https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3`
-                : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3"
+            // cat ? `https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3`
+            //     : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3"
+            cat ? `https://gnews.io/api/v4/search?q=${cat}&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23`
+                : "https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23"
 
         ).then((data) => {
             setdata(data.data.articles)
@@ -19,7 +21,7 @@ function NewsApiHandler({ cat, EmailForArticle }) {
 
     const savedArticle = async (article) => {
         // console.log(EmailForArticle)
-        await axios.post(`http://localhost:5000/save`, { article: article, email: EmailForArticle }).then((data) => {
+        await axios.post(`https://newsbackend-satyam.onrender.com/save`, { article: article, email: EmailForArticle }).then((data) => {
             console.log(data.data)
         })
 
@@ -38,7 +40,7 @@ function NewsApiHandler({ cat, EmailForArticle }) {
                             <a href={item.url} target='_blank' class="btn btn-primary">Details...</a>
                             <a onClick={() => savedArticle(item.url)} target='_blank' class="btn btn-warning mx-5 ">save</a>
                         </div>
-                    </div>)) : null
+                    </div>)) : <h1>Loading....</h1>
                 }
             </div>
         </div>

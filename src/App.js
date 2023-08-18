@@ -19,24 +19,23 @@ function App() {
           <div id='nav-2'   ><ShowUserWithSaveArticle />  </div>
         </div>
         <div className='child-area'  > <Routes>
-          <Route exact path='/' element={
+          <Route exact path='/*' element={
             (xlog) ? (<NewsHubHome EmailForArticle={EmailForArticle} />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)
           } />
           <Route path='/Genral' element={
-            (xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="general" />) : (<Login   setEmailForArticle={setEmailForArticle}   xlog={xlog} setxlog={setxlog} />)
+            (xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="general" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)
           } />
           <Route path='/Business' element={
-            (xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="business" />) : (<Login   setEmailForArticle={setEmailForArticle}  xlog={xlog} setxlog={setxlog} />)
+            (xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="business" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)
           } />
-          <Route path='/Politics' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="politics" />) : (<Login  setEmailForArticle={setEmailForArticle}  xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/Health' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="health" />) : (<Login  setEmailForArticle={setEmailForArticle}  xlog={xlog} setxlog={setxlog} />)} />
-
-          <Route path='/Science' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="science" />) : (<Login  setEmailForArticle={setEmailForArticle}  xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/Sport' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="sport" />) : (<Login  setEmailForArticle={setEmailForArticle}  xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/Technology' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="technology" />) : (<Login  setEmailForArticle={setEmailForArticle}  xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/register' element={<Resigstration  setEmailForArticle={setEmailForArticle}  xlog={xlog} setxlog={setxlog} />} />
+          <Route path='/Politics' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="politics" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
+          <Route path='/Health' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="health" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
+          <Route path='/Science' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="science" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
+          <Route path='/Sport' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="sport" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
+          <Route path='/Technology' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="technology" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
+          <Route path='/register' element={<Resigstration setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/savedArticle' element={<SavedArticles  EmailForArticle={EmailForArticle} />} />
+          <Route path='/savedArticle' element={<SavedArticles EmailForArticle={EmailForArticle} />} />
         </Routes> </div>
       </Router>
     </div>

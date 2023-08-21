@@ -4,6 +4,7 @@ import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 function Resigstration({ xlog, setxlog, setEmailForArticle }) {
 
+    const [emailIsTrue, setEmailIsTrue] = useState(false)
     const navigate = useNavigate()
 
     const [user, setuser] = useState({
@@ -23,16 +24,28 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
 
         if (name && email && pass && pass === repass) {
 
-            axios.post("https://newsbackend-satyam.onrender.com/register", user).then(async (res) => {
-                alert(await res.data.message)
-                if (res.data.message == "Successfully registered!") {
-                    setxlog(!xlog)
-                    setEmailForArticle(user.email)
-                    navigate('/')
 
+            const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+            if (!emailRegex.test(user.email)) {
+                setEmailIsTrue(true)
+            } else {
+                axios.post("https://newsbackend-satyam.onrender.com/register", user).then(async (res) => {
+                    alert(await res.data.message)
+                    if (res.data.message == "Successfully registered!") {
+                        setxlog(!xlog)
+                        setEmailForArticle(user.email)
+                        navigate('/')
+
+                    } else {
+                        alert("Fill Correct Detail!")
+                          setxlog(xlog)
+                        
+                    }
                 }
+                )
             }
-            )
+
+
         } else {
             alert("invalid!")
         }
@@ -52,6 +65,11 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
                     <div className="inp m-2 ">
                         <input type="email" name="email" id="" placeholder='Enter Your Email' onChange={changeHandler} required />
                     </div>
+
+                    {
+                        emailIsTrue ? <p className=' border w-50 m-auto  text-danger' >Email Error</p> : null
+                    }
+
                     <div className="inp m-2 ">
                         <input type="password" name="pass" id="" placeholder='Enter Your Password' onChange={changeHandler} required />
                     </div>

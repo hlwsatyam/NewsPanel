@@ -31,12 +31,10 @@ function Login({ xlog, setxlog, setEmailForArticle }) {
                 } else {
                     alert("Please Check Your Email & Pass!")
                     setulogCheck(!logCheck)
-                   
                 }
             }
             )
         }
-
     }
     return (
         <div>

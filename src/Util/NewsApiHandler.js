@@ -5,8 +5,13 @@ function NewsApiHandler({ cat, EmailForArticle }) {
     const [data, setdata] = useState([])
     const NewsHandler = async () => {
         await axios.get(
+            /* older Api:newsApi */
+
             // cat ? `https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3`
             //     : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3"
+
+            //  new Api: Gnews 
+
             cat ? `https://gnews.io/api/v4/search?q=${cat}&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23`
                 : "https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23"
 
@@ -31,7 +36,7 @@ function NewsApiHandler({ cat, EmailForArticle }) {
         <div>
             <div className="container-md p-4 box ">
                 {
-                    (data) ? (data.map((item, id) => <div class="card mt-5 item" >
+                    (data) ? (data.map((item, id) => <div class="card  mt-5 item" >
                         <img src={item.image} class="card-img-top" alt="Img src Not Found" />
                         <div class="card-body">
                             <h5 class="card-title">{item.title}</h5>

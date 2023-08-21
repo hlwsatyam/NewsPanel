@@ -39,7 +39,7 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
     }
     return (
         <div>
-            <div className=" container-fluid bg-danger login ">
+            <div className=" container-fluid bg-success login ">
                 <div className="innerLog">
                     <div className="display-3 m-2 text-white  "> WelCome To NewsHub  </div>
                     <div className="display-6 m-2  "> Registraion  </div>

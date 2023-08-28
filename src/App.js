@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import Navbar from './Components/Navbar'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -9,8 +9,23 @@ import Resigstration from './auth/Resigstration'
 import ShowUserWithSaveArticle from './auth/ShowUserWithSaveArticle'
 import SavedArticles from './auth/SavedArticles'
 function App() {
+
+  const lcid = localStorage.getItem("id")
+
+  useEffect(() => {
+    if (lcid == null) {
+      setxlog(true)
+    } else {
+      setxlog(true)
+    }
+  })
+
+
   const [xlog, setxlog] = useState(false)
   const [EmailForArticle, setEmailForArticle] = useState("")
+
+
+
   return (
     <div>
       <Router>

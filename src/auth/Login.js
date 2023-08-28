@@ -22,10 +22,12 @@ function Login({ xlog, setxlog, setEmailForArticle }) {
             setEmailIsTrue(true)
         } else {
             axios.post("https://newsbackend-satyam.onrender.com/login", user).then((res) => {
+            // axios.post("http://localhost:5000/login", user).then((res) => {
 
                 if ((user.pass != "") && (res.data.message == "login successfully!")) {
-                    setEmailForArticle(user.email)
-                    setxlog(!xlog)
+                    localStorage.setItem("id", res.data.id)
+                    // setEmailForArticle(user.email)
+                    // setxlog(!xlog)
                     setEmailIsTrue(false)
                     navigate('/')
                 } else {

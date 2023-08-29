@@ -24,17 +24,16 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
 
         if (name && email && pass && pass === repass) {
 
+
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
             if (!emailRegex.test(user.email)) {
                 setxlog(xlog)
                 setEmailIsTrue(true)
             } else {
                 axios.post("https://newsbackend-satyam.onrender.com/register", user).then(async (res) => {
-                // await axios.post("http://localhost:5000/register", user).then(async (res) => {
+
                     if (res.data.message == "Successfully registered!") {
-
-                        localStorage.setItem("id", res.data.id)
-
+                        alert(await res.data.message)
                         setxlog(!xlog)
                         setEmailIsTrue(false)
                         setEmailForArticle(user.email)
@@ -42,6 +41,7 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
 
                     } else {
                         alert("Fill Correct Detail!")
+                       
 
                     }
                 }

@@ -3,15 +3,10 @@ import axios from 'axios'
 import './Auth.css'
 function SavedArticles({ EmailForArticle }) {
     const [Articles, setArticles] = useState([])
- 
-    const lcid = localStorage.getItem("id")
-
     useEffect(() => {
-
-        if (lcid !== null) {
+        if (EmailForArticle != "") {
             const fetchData = async () => {
                 await axios.post("https://newsbackend-satyam.onrender.com/artices", { EmailForArticle }).then((res) => {
-                // await axios.post("http://localhost:5000/artices", { EmailForArticle, id: lcid }).then((res) => {
                     setArticles(res.data)
                     // console.log(res.data)
                 })

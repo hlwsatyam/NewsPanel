@@ -1,29 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-
-
 function Navbar() {
-
-    const [isSign, setIsSign] = useState(false)
-
-    useEffect(() => {
-        const lcid = localStorage.getItem("id")
-        if (lcid == "" || lcid == null) {
-            setIsSign(false)
-        } else {
-            setIsSign(true)
-        }
-    })
-
-
-    const logout = () => {
-
-    localStorage.removeItem("id")
-    setIsSign(false)
-    }
-
-
     return (
         <div>
             <nav class="navbar navbar-expand-lg text-white bg-dark">
@@ -34,9 +12,6 @@ function Navbar() {
                             <i className='fa fa-bars'  ></i>
                         </span>
                     </button>
-
-
-
                     <div class=" text-white collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class=" text-white navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
@@ -66,31 +41,6 @@ function Navbar() {
                         </ul>
 
                     </div>
-
-
-                    <div class=" text-white collapse navbar-collapse" id="navbarSupportedContent">
-
-                        {
-                            isSign ? <ul class=" text-white navbar-nav ms-auto mb-2 mb-lg-0">  <li class="nav-item">
-                                <Link onClick={logout} class=" text-white nav-link" to="/Genral">Logout</Link>
-                            </li>  </ul>
-
-                                :
-                                <ul class=" text-white navbar-nav ms-auto mb-2 mb-lg-0">
-
-                                    <li class="nav-item">
-                                        <Link class=" text-white nav-link active" aria-current="page" to="/login">Login</Link>
-                                    </li>
-                                    <li class="nav-item">
-                                        <Link class=" text-white nav-link" to="/register">Signup</Link>
-                                    </li>
-                                </ul>
-                        }
-
-
-                    </div>
-
-
                 </div>
             </nav>
         </div>

@@ -1,7 +1,23 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useSelector, useDispatch } from "react-redux"
+import log from '../Redux/Action'
 
 function Navbar() {
+
+    const id = useSelector((s) => s)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const logout = async () => {
+        localStorage.removeItem("id")
+        dispatch(log())
+        navigate('/')
+    }
+
+    const login = () => {
+        navigate('/login')
+    }
+
     return (
         <div>
             <nav class="navbar navbar-expand-lg text-white bg-dark">
@@ -38,6 +54,16 @@ function Navbar() {
                             <li class="nav-item">
                                 <Link class=" text-white nav-link" to="/Technology">Technology</Link>
                             </li>
+
+                            {
+                                id == null ? <li onClick={() => login()} class="nav-item">
+                                    <Link class=" text-white nav-link">Login</Link>
+                                </li> : <li onClick={() => logout()} class="nav-item">
+                                    <Link class=" text-white nav-link" to="/Technology">Logout</Link>
+                                </li>
+                            }
+
+
                         </ul>
 
                     </div>

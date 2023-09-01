@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 import './Auth.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-function Login({ xlog, setxlog, setEmailForArticle }) {
+import { useDispatch } from 'react-redux'
+import log from '../Redux/Action'
+function Login({ }) {
+
+    const dispatch = useDispatch()
+
     const navigate = useNavigate()
     const [logCheck, setulogCheck] = useState(true)
     const [emailIsTrue, setEmailIsTrue] = useState(false)
@@ -16,16 +21,18 @@ function Login({ xlog, setxlog, setEmailForArticle }) {
             ...user, [name]: value
         })
     }
-    const login = (e) => {
+    const login = async (e) => {
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         if (!emailRegex.test(user.email)) {
             setEmailIsTrue(true)
         } else {
-            axios.post("https://newsbackend-satyam.onrender.com/login", user).then((res) => {
+            await axios.post("https://newsbackend-satyam.onrender.com/login", user).then((res) => {
+            // await axios.post("http://localhost:5000/login", user).then((res) => {
 
                 if ((user.pass != "") && (res.data.message == "login successfully!")) {
-                    setEmailForArticle(user.email)
-                    setxlog(!xlog)
+                    localStorage.setItem("id", res.data.id)
+                    dispatch(log())
+
                     setEmailIsTrue(false)
                     navigate('/')
                 } else {

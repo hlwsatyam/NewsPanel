@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './NewsApiHandler.css'
-function NewsApiHandler({ cat, EmailForArticle }) {
+import { useSelector } from "react-redux"
+function NewsApiHandler({ cat, }) {
     const [data, setdata] = useState([])
+    const id = useSelector((s) => s)
     const NewsHandler = async () => {
         await axios.get(
             /* older Api:newsApi */
@@ -24,9 +26,10 @@ function NewsApiHandler({ cat, EmailForArticle }) {
     }, [cat])
 
 
-    const savedArticle = async (article) => {
-        // console.log(EmailForArticle)
-        await axios.post(`https://newsbackend-satyam.onrender.com/save`, { article: article, email: EmailForArticle }).then((data) => {
+    const savedArticle = async (article, title) => {
+
+        await axios.post(`https://newsbackend-satyam.onrender.com/save`, { article, id, title }).then((data) => {
+            // await axios.post(`http://localhost:5000/save`, { article, id, title }).then((data) => {
             console.log(data.data)
         })
 
@@ -43,7 +46,7 @@ function NewsApiHandler({ cat, EmailForArticle }) {
                             <p class="card-text">{item.content}</p>
                             <p class="card-text">{item.description}</p>
                             <a href={item.url} target='_blank' class="btn btn-primary">Details...</a>
-                            <a onClick={() => savedArticle(item.url)} target='_blank' class="btn btn-warning mx-5 ">save</a>
+                            <a onClick={() => savedArticle(item.url, item.title)} target='_blank' class="btn btn-warning mx-5 ">save</a>
                         </div>
                     </div>)) : <h1>Loading....</h1>
                 }

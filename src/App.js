@@ -8,9 +8,10 @@ import Login from './auth/Login'
 import Resigstration from './auth/Resigstration'
 import ShowUserWithSaveArticle from './auth/ShowUserWithSaveArticle'
 import SavedArticles from './auth/SavedArticles'
+import { useSelector } from "react-redux"
 function App() {
-  const [xlog, setxlog] = useState(false)
-  const [EmailForArticle, setEmailForArticle] = useState("")
+  
+  const id = useSelector((s) => s)
   return (
     <div>
       <Router>
@@ -20,22 +21,26 @@ function App() {
         </div>
         <div className='child-area'  > <Routes>
           <Route exact path='/*' element={
-            (xlog) ? (<NewsHubHome EmailForArticle={EmailForArticle} />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)
+            (id) ? (<NewsHubHome />) : (<Login />)
           } />
           <Route path='/Genral' element={
-            (xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="general" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)
+            (id) ? (<NewsApiHandler cat="general" />) : (<Login />)
           } />
           <Route path='/Business' element={
-            (xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="business" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)
+            (id) ? (<NewsApiHandler cat="business" />) : (<Login />)
           } />
-          <Route path='/Politics' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="politics" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/Health' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="health" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/Science' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="science" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/Sport' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="sport" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/Technology' element={(xlog) ? (<NewsApiHandler EmailForArticle={EmailForArticle} cat="technology" />) : (<Login setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />)} />
-          <Route path='/register' element={<Resigstration setEmailForArticle={setEmailForArticle} xlog={xlog} setxlog={setxlog} />} />
+          <Route path='/Politics' element={(id) ? (<NewsApiHandler cat="politics" />) : (<Login />)} />
+          <Route path='/Health' element={(id) ? (<NewsApiHandler cat="health" />) : (<Login />)} />
+          <Route path='/Science' element={(id) ? (<NewsApiHandler cat="science" />) : (<Login />)} />
+          <Route path='/Sport' element={(id) ? (<NewsApiHandler cat="sport" />) : (<Login />)} />
+
+          <Route path='/Technology' element={(id) ? (<NewsApiHandler cat="technology" />) : (<Login />)} />
+
+          <Route path='/register' element={<Resigstration />} />
+
           <Route path='/login' element={<Login />} />
-          <Route path='/savedArticle' element={<SavedArticles EmailForArticle={EmailForArticle} />} />
+
+          <Route path='/savedArticle' element={<SavedArticles />} />
         </Routes> </div>
       </Router>
     </div>

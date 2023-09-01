@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 import './Auth.css'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-function Resigstration({ xlog, setxlog, setEmailForArticle }) {
+import log from '../Redux/Action'
+import { useDispatch } from 'react-redux'
 
+function Resigstration({  }) {
+    const dispatch = useDispatch()
     const [emailIsTrue, setEmailIsTrue] = useState(false)
     const navigate = useNavigate()
 
@@ -27,21 +30,24 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
 
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
             if (!emailRegex.test(user.email)) {
-                setxlog(xlog)
+
                 setEmailIsTrue(true)
             } else {
                 axios.post("https://newsbackend-satyam.onrender.com/register", user).then(async (res) => {
+                    // axios.post("http://localhost:5000/register", user).then(async (res) => {
 
                     if (res.data.message == "Successfully registered!") {
-                        alert(await res.data.message)
-                        setxlog(!xlog)
+
+                        localStorage.setItem("id", res.data.id)
+                        dispatch(log())
+
                         setEmailIsTrue(false)
-                        setEmailForArticle(user.email)
+                     
                         navigate('/')
 
                     } else {
                         alert("Fill Correct Detail!")
-                       
+
 
                     }
                 }
@@ -50,7 +56,7 @@ function Resigstration({ xlog, setxlog, setEmailForArticle }) {
 
 
         } else {
-            setxlog(xlog)
+
             alert("invalid!")
         }
     }

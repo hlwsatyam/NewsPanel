@@ -29,10 +29,11 @@ function Login({ }) {
             await axios.post("https://newsbackend-satyam.onrender.com/login", user).then((res) => {
             // await axios.post("http://localhost:5000/login", user).then((res) => {
 
+
                 if ((user.pass != "") && (res.data.message == "login successfully!")) {
                     localStorage.setItem("id", res.data.id)
                     dispatch(log())
-
+//yy
                     setEmailIsTrue(false)
                     navigate('/')
                 } else {

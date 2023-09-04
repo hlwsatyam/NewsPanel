@@ -5,7 +5,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import log from '../Redux/Action'
 import { useDispatch } from 'react-redux'
 
-function Resigstration({  }) {
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
+
+
+
+function Resigstration({ }) {
+
+    const [isLoading, setIsLoading] = useState("")
+
     const dispatch = useDispatch()
     const [emailIsTrue, setEmailIsTrue] = useState(false)
     const navigate = useNavigate()
@@ -23,6 +31,7 @@ function Resigstration({  }) {
         })
     }
     const register = async () => {
+        setIsLoading("grow")
         const { name, email, pass, repass } = user
 
         if (name && email && pass && pass === repass) {
@@ -30,9 +39,10 @@ function Resigstration({  }) {
 
             const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
             if (!emailRegex.test(user.email)) {
-
+                setIsLoading("")
                 setEmailIsTrue(true)
             } else {
+                setIsLoading("grow")
                 axios.post("https://newsbackend-satyam.onrender.com/register", user).then(async (res) => {
                     // axios.post("http://localhost:5000/register", user).then(async (res) => {
 
@@ -42,13 +52,13 @@ function Resigstration({  }) {
                         dispatch(log())
 
                         setEmailIsTrue(false)
-                     
+                        setIsLoading("")
                         navigate('/')
 
                     } else {
                         alert("Fill Correct Detail!")
 
-
+                        setIsLoading("")
                     }
                 }
                 )
@@ -56,7 +66,7 @@ function Resigstration({  }) {
 
 
         } else {
-
+            setIsLoading("")
             alert("invalid!")
         }
     }
@@ -86,7 +96,20 @@ function Resigstration({  }) {
                     <div className="inp m-2 ">
                         <input type="password" name="repass" id="" placeholder='Repeat Your Password' onChange={changeHandler} required />
                     </div>
-                    <div className=" m-2 btn btn-info" onClick={register}    > Register </div>
+                    {/* <div className=" m-2 btn btn-info" onClick={register}    > Register </div> */}
+
+
+                    <Button className="m-2" onClick={register} variant="primary" >
+                        <Spinner
+                            as="span"
+                            animation={isLoading}
+                            size="sm"
+                            role="status"
+                            aria-hidden="false"
+                        />
+                        Register
+                    </Button>
+
                     <h4> Or </h4>
                     <Link to="/login"  ><div className=" m-2 btn btn-info"> Login </div></Link>
                 </div>

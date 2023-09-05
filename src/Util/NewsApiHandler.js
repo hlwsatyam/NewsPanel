@@ -12,7 +12,8 @@ function NewsApiHandler({ cat, }) {
             cat ? `https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3`
                 : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3"
 
-            //  new Api: Gnews 
+            //  new Api:   G news 
+
 
             // cat ? `https://gnews.io/api/v4/search?q=${cat}&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23`
             //     : "https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23"

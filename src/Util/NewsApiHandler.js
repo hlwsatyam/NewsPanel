@@ -9,14 +9,22 @@ function NewsApiHandler({ cat, }) {
         await axios.get(
             /* older Api:newsApi */
 
-            cat ? `https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3`
-                : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3"
+            // cat ? `https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3`
+            //     : "https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=aaf76459f2f14dc89f8c7c1082e09fb3"
+
 
             //  new Api:   G news 
 
+            // satyampandit024@gmail.com
 
-            // cat ? `https://gnews.io/api/v4/search?q=${cat}&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23`
-            //     : "https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=10&apikey=269f977595889b5ca9a4fee64ddeda23"
+            // cat ? `https://gnews.io/api/v4/search?q=${cat}&lang=en&country=in&max=25&apikey=269f977595889b5ca9a4fee64ddeda23`
+            //     : "https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=25&apikey=269f977595889b5ca9a4fee64ddeda23"
+
+
+            // satyampandit021@gmail.com
+
+            cat ? `https://gnews.io/api/v4/search?q=${cat}&lang=en&country=in&max=25&apikey=3f0cd803dfb633671a10ef2185b45645`
+                : "https://gnews.io/api/v4/search?q=example&lang=en&country=in&max=25&apikey=3f0cd803dfb633671a10ef2185b45645"
 
         ).then((data) => {
             setdata(data.data.articles)
@@ -45,10 +53,10 @@ function NewsApiHandler({ cat, }) {
                     (data) ? (data.map((item, id) => <div class="card  mt-5 item" data-aos="fade-up-right"  >
 
                         {/* urlimage for old Api */}
-                        <img src={item.urlToImage} data-aos="zoom-in-left" class="card-img-top" alt="Img src Not Found" />
+                        {/* <img src={item.urlToImage} data-aos="zoom-in-left" class="card-img-top" alt="Img src Not Found" /> */}
 
                         {/* urlimage for new Api */}
-                        {/* <img src={item.image} data-aos="zoom-in-left" class="card-img-top" alt="Img src Not Found" /> */}
+                        <img src={item.image} data-aos="zoom-in-left" class="card-img-top" alt="Img src Not Found" />
 
                         <div class="card-body" data-aos="fade-left"
                             data-aos-anchor="#example-anchor"

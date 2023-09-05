@@ -37,11 +37,16 @@ function NewsApiHandler({ cat, }) {
 
     return (
         <div>
-            <div className="container-md p-4 box ">
+            <div className="container-md p-4 box " data-aos="flip-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="2000"  >
                 {
-                    (data) ? (data.map((item, id) => <div class="card  mt-5 item" >
-                        <img src={item.image} class="card-img-top" alt="Img src Not Found" />
-                        <div class="card-body">
+                    (data) ? (data.map((item, id) => <div class="card  mt-5 item" data-aos="fade-up-right"  >
+                        <img src={item.image} data-aos="zoom-in-left" class="card-img-top" alt="Img src Not Found" />
+                        <div class="card-body" data-aos="fade-left"
+                            data-aos-anchor="#example-anchor"
+                            data-aos-offset="500"
+                            data-aos-duration="500"  >
                             <h5 class="card-title">{item.title}</h5>
                             <p class="card-text">{item.content}</p>
                             <p class="card-text">{item.description}</p>

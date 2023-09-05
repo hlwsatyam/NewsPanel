@@ -18,14 +18,16 @@ function SavedArticles() {
         }
     })
     return (
-        <div>
+        <div   data-aos="fade-right"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"   >
             <div className="container-md">
                 <div className="row">
                     <div className="display-1 mt-5 w-100 text-center ">
                         Saved Articles
                     </div>
                     {
-                        Articles.map((i, ind) => <div class="card" >
+                        Articles.map((i, ind) => <div  data-aos="zoom-in-up" class="card" >
 
                             <div class="card-body">
                                 <h5 class="card-title">{ind + 1}</h5>

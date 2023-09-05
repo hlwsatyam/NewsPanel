@@ -3,7 +3,7 @@ import NewsApiHandler from '../Util/NewsApiHandler'
 
 function NewsHubHome({ EmailForArticle }) {
     return (
-        <div>
+        <div  data-aos="zoom-out-up" >
             <NewsApiHandler EmailForArticle={EmailForArticle} />
         </div>
     )

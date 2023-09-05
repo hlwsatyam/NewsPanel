@@ -15,8 +15,9 @@ function App() {
   return (
     <div>
       <Router>
-        <div className='fixed-nav'>
-          <div id='nav'>    <Navbar /> </div>
+        <div className='fixed-nav'  data-aos="fade-up"
+     data-aos-anchor-placement="top-center"   >
+          <div  id='nav'>    <Navbar /> </div>
           <div id='nav-2'   ><ShowUserWithSaveArticle />  </div>
         </div>
         <div className='child-area'  > <Routes>
